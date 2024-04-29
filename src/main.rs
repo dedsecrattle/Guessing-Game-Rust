@@ -4,7 +4,7 @@ use colored::Colorize;
 
 
 fn main() {
-    println!("Welcome to the Game! \nType quit to exit the Game \n");
+    println!("Welcome to the Game! \n Type quit to exit the Game \n");
 
     let mut score = 0;
 
@@ -16,7 +16,7 @@ fn main() {
 
         stdin().read_line(&mut guess).expect("ERROR: While Taking Input!");
 
-        if guess.trim() == "quit" {
+        if guess.trim().eq_ignore_ascii_case("quit") {
             break;
         }
 
