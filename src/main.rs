@@ -10,7 +10,7 @@ fn main() {
 
     let mut score = 0;
 
-    let secretnum = thread_rng().gen_range(1..=100);
+    let secret_num = thread_rng().gen_range(1..=100);
     loop {
          
         println!("Please Guess a number Between 1 to 100 !");
@@ -27,7 +27,7 @@ fn main() {
             continue;
         }
 
-        let result = compare_val(guess, secretnum, score);
+        let result = compare_val(guess, secret_num, score);
 
         if result {
             break
