@@ -1,4 +1,6 @@
-use std::{cmp::Ordering, io::stdin};
+mod parser;
+
+use std::{cmp::Ordering};
 use rand::{thread_rng, Rng};
 use colored::Colorize;
 
@@ -13,13 +15,13 @@ fn main() {
          
         println!("Please Guess a number Between 1 to 100 !");
 
-        let guess = take_input();
+        let guess = parser::take_input();
 
         if guess.trim().eq_ignore_ascii_case("quit") {
             break;
         }
 
-        let guess:u32 = parse_input(guess);
+        let guess:u32 = parser::parse_input(guess);
 
         if guess == 101 {
             continue;
@@ -36,11 +38,7 @@ fn main() {
 }
 
 
-fn take_input() -> String {
-    let mut guess = String::new();
-    stdin().read_line(&mut guess).expect("ERROR: While Taking Input!");
-    guess
-}
+
 
 fn compare_val(guess:u32, actual:u32, score:i32) -> bool {
     match guess.cmp(&actual) {
@@ -59,19 +57,5 @@ fn compare_val(guess:u32, actual:u32, score:i32) -> bool {
     }
 }
 
-fn parse_input(guess:String) -> u32 {
-    let guess:u32 = match guess.trim().parse() {
-        Ok(val) => {
-            if (val <= 100) & (val >= 1) {
-                val
-            } else {
-                101
-            }
-        },
-        Err(_) => {
-            101
-        },
-    };
-    guess
-}
+
 
